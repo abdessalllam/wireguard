@@ -6,6 +6,7 @@ This repository sets up a two‑hop WireGuard chain:
 - Devices connect to **1st Hop**.
 - 1st Hop forwards all client traffic via a backhaul tunnel to **2nd Hop**, which performs Internet egress.
 - Optional: **IPv6‑only egress** on 2nd Hop using DNS64+NAT64 (with clean rollback).
+  
 Just like with DoubleVPn in VPN Apps.
 
 Designed for **Ubuntu 24.04** on both servers. Uses **iptables** (with `iptables‑persistent`) and disables `nftables`.
