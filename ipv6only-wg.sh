@@ -1,4 +1,15 @@
 #!/usr/bin/env bash
+# Author: https://github.com/abdessalllam
+# Author: https://abdessal.am
+#
+#       ░███    ░██               ░██                                             ░██ ░██ ░██                            
+#      ░██░██   ░██               ░██                                             ░██ ░██ ░██                            
+#     ░██  ░██  ░████████   ░████████  ░███████   ░███████   ░███████   ░██████   ░██ ░██ ░██  ░██████   ░█████████████  
+#    ░█████████ ░██    ░██ ░██    ░██ ░██    ░██ ░██        ░██              ░██  ░██ ░██ ░██       ░██  ░██   ░██   ░██ 
+#    ░██    ░██ ░██    ░██ ░██    ░██ ░█████████  ░███████   ░███████   ░███████  ░██ ░██ ░██  ░███████  ░██   ░██   ░██ 
+#    ░██    ░██ ░███   ░██ ░██   ░███ ░██               ░██        ░██ ░██   ░██  ░██ ░██ ░██ ░██   ░██  ░██   ░██   ░██ 
+#    ░██    ░██ ░██░█████   ░█████░██  ░███████   ░███████   ░███████   ░█████░██ ░██ ░██ ░██  ░█████░██ ░██   ░██   ░██
+#  
 # Toggle IPv6-only egress for 1st HOP or Single Hop clients via DNS64 + NAT64 (JOOL) + NAT66
 # Modes: enable | disable | status | rollback <backup-dir>
 # Assumes: wg-up is the 1st-HOP->2nd-Hop tunnel on this host, Change to suit.

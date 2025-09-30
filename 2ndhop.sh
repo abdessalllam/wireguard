@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 #   2nd Hop egress-hop toolkit
+# Author: https://github.com/abdessalllam
+# Author: https://abdessal.am
+#
+#       ░███    ░██               ░██                                             ░██ ░██ ░██                            
+#      ░██░██   ░██               ░██                                             ░██ ░██ ░██                            
+#     ░██  ░██  ░████████   ░████████  ░███████   ░███████   ░███████   ░██████   ░██ ░██ ░██  ░██████   ░█████████████  
+#    ░█████████ ░██    ░██ ░██    ░██ ░██    ░██ ░██        ░██              ░██  ░██ ░██ ░██       ░██  ░██   ░██   ░██ 
+#    ░██    ░██ ░██    ░██ ░██    ░██ ░█████████  ░███████   ░███████   ░███████  ░██ ░██ ░██  ░███████  ░██   ░██   ░██ 
+#    ░██    ░██ ░███   ░██ ░██   ░███ ░██               ░██        ░██ ░██   ░██  ░██ ░██ ░██ ░██   ░██  ░██   ░██   ░██ 
+#    ░██    ░██ ░██░█████   ░█████░██  ░███████   ░███████   ░███████   ░█████░██ ░██ ░██ ░██  ░█████░██ ░██   ░██   ░██
+# 
 # Commands:
 #   apply         - backup + packages + sysctl (ip_forward, rp_filter, UDP conntrack) + NAT + FORWARD + INPUT accept + MSS clamp + peer AllowedIPs sanity
 #   test          - show NAT, FORWARD, sysctls
