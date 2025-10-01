@@ -98,17 +98,27 @@ EOF
 
 peer_allowedips_sanity() {
   # Ensure the 1st Hop peer on wg-up authorizes client pools (cryptokey routing)
-  local 1STHOP_PUB CUR
-  1STHOP_PUB=$(wg show "$IF_UP" peers | head -n1 || true)
-  [ -z "$1STHOP_PUB" ] && { echo "[!] No peers on $IF_UP — skipping AllowedIPs sanity"; return 0; }
+  local FIRSTHOP_PUB CUR CFG
+  CFG="/etc/wireguard/${IF_UP}.conf"
+
+  if [ ! -f "$CFG" ]; then
+    echo "[!] $CFG not found — skipping AllowedIPs sanity"
+    return 0
+  fi
+
+  FIRSTHOP_PUB=$(wg show "$IF_UP" peers | head -n1 || true)
+  [ -z "$FIRSTHOP_PUB" ] && { echo "[!] No peers on $IF_UP — skipping AllowedIPs sanity"; return 0; }
 
   CUR=$(wg show "$IF_UP" allowed-ips | awk '{print $2}' | paste -sd, -)
   if ! echo "$CUR" | grep -q "10.66.66.0/24"; then
-    wg set "$IF_UP" peer "$1STHOP_PUB" allowed-ips 10.70.0.2/32,fd00:70::2/128,"$CLIENT_V4_CIDR","$CLIENT_V6_CIDR"
-    # Persist to disk (first AllowedIPs under the single peer)
-    sed -i "0,/^AllowedIPs = .*/s//AllowedIPs = 10.70.0.2\/32, fd00:70::2\/128, ${CLIENT_V4_CIDR}, ${CLIENT_V6_CIDR}/" "/etc/wireguard/${IF_UP}.conf"
+    wg set "$IF_UP" peer "$FIRSTHOP_PUB" allowed-ips \
+      10.70.0.2/32,fd00:70::2/128,"$CLIENT_V4_CIDR","$CLIENT_V6_CIDR"
+
+    # Persist to disk (first AllowedIPs under the peer)
+    sed -i "0,/^AllowedIPs = .*/s|^AllowedIPs = .*|AllowedIPs = 10.70.0.2/32, fd00:70::2/128, ${CLIENT_V4_CIDR}, ${CLIENT_V6_CIDR}|" "$CFG"
   fi
 }
+
 
 apply_cmd() {
   must_root
